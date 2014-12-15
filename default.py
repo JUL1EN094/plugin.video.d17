@@ -18,7 +18,7 @@ __addonID__   = "plugin.video.D17"
 __addon__     = xbmcaddon.Addon( __addonID__ )
 __addonDir__  = __addon__.getAddonInfo("path")
 __author__    = __addon__.getAddonInfo("author")
-__date__      = "11-12-2014"
+__date__      = "12-15-2014"
 __language__  = __addon__.getLocalizedString
 __version__   = __addon__.getAddonInfo("version")
 #---------------------------------------------------------------------

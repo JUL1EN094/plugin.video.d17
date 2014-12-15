@@ -1,2 +1,6 @@
-﻿v1.0.0 (11-12-2014) par JUL1EN094
-- Création de l'addon
+﻿v1.0.1 (12-15-2014) by JUL1EN094
+- Changelog in english language
+- Fix addon.xml
+
+v1.0.0 (12-11-2014) by JUL1EN094
+- Addon created
