@@ -14,11 +14,11 @@ import simplejson as json
 # print_exc
 from traceback import print_exc
 #---------------------------------------------------------------------
-__addonID__   = "plugin.video.D17"
+__addonID__   = "plugin.video.d17"
 __addon__     = xbmcaddon.Addon( __addonID__ )
 __addonDir__  = __addon__.getAddonInfo("path")
 __author__    = __addon__.getAddonInfo("author")
-__date__      = "12-15-2014"
+__date__      = "12-19-2014"
 __language__  = __addon__.getLocalizedString
 __version__   = __addon__.getAddonInfo("version")
 #---------------------------------------------------------------------
@@ -32,13 +32,13 @@ LIVE_URL      = "http://www.d17.tv/pid5322-d17-live.html"
 PGINFOS_URL   = LAB_URL+'/pfv'
 USER_AGENT    = 'Mozilla/5.0 (Windows NT 5.1; rv:15.0) Gecko/20100101 Firefox/15.0.1'
 #---------------------------------------------------------------------
-class D17:
+class d17:
     """
     main plugin class
     """
     def __init__( self, *args, **kwargs ):
         print "==============================="
-        print "  D17 - Version: %s"%__version__
+        print "  d17 - Version: %s"%__version__
         print "==============================="
         self.set_debug_mode()
         self.params    = self.get_params()
@@ -63,12 +63,12 @@ class D17:
         except:
             pass            
         if self.debug_mode:
-            print "D17 addon : Python version -> %s"%str(sys.version_info)
-            print "D17 addon : Addon dir      -> %s"%__addonDir__ 
-            print "D17 addon : Mode           -> "+str(self.mode)
-            print "D17 addon : URL            -> "+str(self.url)
-            print "D17 addon : Name           -> "+str(self.name)
-            print "D17 addon : Iconimage      -> "+str(self.iconimage)
+            print "d17 addon : Python version -> %s"%str(sys.version_info)
+            print "d17 addon : Addon dir      -> %s"%__addonDir__ 
+            print "d17 addon : Mode           -> "+str(self.mode)
+            print "d17 addon : URL            -> "+str(self.url)
+            print "d17 addon : Name           -> "+str(self.name)
+            print "d17 addon : Iconimage      -> "+str(self.iconimage)
  
         if self.mode==None :
             self.GET_CATEGORIES()
@@ -93,15 +93,15 @@ class D17:
             xbmcplugin.setResolvedUrl(handle=int(sys.argv[1]), succeeded=True, listitem=item)
     
     def GET_CATEGORIES(self):
-        if self.debug_mode : print "D17 addon : GET_CATEGORIES()"
+        if self.debug_mode : print "d17 addon : GET_CATEGORIES()"
         webcontent = self.get_webcontent(CAT_URL)
         catalogue  = json.loads(webcontent)
         for categorie in catalogue :
             title = categorie['title'].encode('utf-8')
             self.add_item(title,'mode1',1)
-            if self.debug_mode : print "D17 addon : Add categorie \"%s\""%title
+            if self.debug_mode : print "d17 addon : Add categorie \"%s\""%title
         self.add_item(__language__(30001),LIVE_URL,100,"",{},FANART_PATH,isPlayable=True) 
-        if self.debug_mode : print "D17 addon : Add categorie \"%s\""%__language__(30001)
+        if self.debug_mode : print "d17 addon : Add categorie \"%s\""%__language__(30001)
         
     def GET_LIVE_URL(self):
         webcontent = self.get_webcontent(LIVE_URL)
@@ -109,11 +109,11 @@ class D17:
         import re
         live_id    = re.findall('getPlayerVideo\((.+?)\)',html)[0]
         video_url  = self.get_video_url(live_id)
-        if self.debug_mode : print "D17 addon : live video url \"%s\""%video_url
+        if self.debug_mode : print "d17 addon : live video url \"%s\""%video_url
         return video_url
     
     def GET_PROGRAMS(self):
-        if self.debug_mode : print "D17 addon : GET_PROGRAMS()"
+        if self.debug_mode : print "d17 addon : GET_PROGRAMS()"
         webcontent = self.get_webcontent(CAT_URL)
         catalogue  = json.loads(webcontent)
         for categorie in catalogue :
@@ -122,16 +122,16 @@ class D17:
                 for program in programs :
                     title = program['title'].encode('utf-8')
                     self.add_item(title,self.name,2)
-                    if self.debug_mode : print "D17 addon : Add program \"%s\""%title 
+                    if self.debug_mode : print "d17 addon : Add program \"%s\""%title 
     
     def GET_VIDEO_URL(self):
-        if self.debug_mode : print "D17 addon : GET_VIDEO_URL()"
+        if self.debug_mode : print "d17 addon : GET_VIDEO_URL()"
         video_url = self.get_video_url(self.url)
-        if self.debug_mode : print "D17 addon : video url \"%s\""%video_url
+        if self.debug_mode : print "d17 addon : video url \"%s\""%video_url
         return video_url 
         
     def GET_VIDEOS(self):
-        if self.debug_mode : print "D17 addon : GET_VIDEOS()"
+        if self.debug_mode : print "d17 addon : GET_VIDEOS()"
         webcontent = self.get_webcontent(CAT_URL)
         catalogue  = json.loads(webcontent)
         for categorie in catalogue :
@@ -163,7 +163,7 @@ class D17:
                                         video_name     = infos['Title']
                                         self.add_item(video_name,video_id,3,infos['Thumb'],infos,video_fanart,True)                                
                                         videoslist.append(video_id)
-                                        if self.debug_mode : print "D17 addon : Add video \"%s\""%video_name
+                                        if self.debug_mode : print "d17 addon : Add video \"%s\""%video_name
                                 except :
                                     pass
     
@@ -248,7 +248,7 @@ class D17:
         self.debug_mode = False
         if __addon__.getSetting('debug') == 'true':
             self.debug_mode = True
-        print "D17 addon : debug mode = %s"%self.debug_mode 
+        print "d17 addon : debug mode = %s"%self.debug_mode 
 
 #######################################################################################################################    
 # BEGIN !
@@ -256,6 +256,6 @@ class D17:
 
 if ( __name__ == "__main__" ):
     try:
-        D17()
+        d17()
     except:
         print_exc()

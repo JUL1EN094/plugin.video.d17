@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <strings>
   <!--GENERAL STRINGS -->
-  <string id="30000">D17</string>
+  <string id="30000">d17</string>
   <string id="30001">Live</string>
 
   <!--SETTINGS STRINGS -->
